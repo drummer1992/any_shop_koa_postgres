@@ -1,4 +1,4 @@
-# any_shop_postgres
+# any_shop_koa_postgres
 
 • RESTful API on Koa.js
 
