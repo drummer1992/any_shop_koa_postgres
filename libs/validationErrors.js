@@ -11,8 +11,9 @@ module.exports = async function handleSequelizeValidationError(ctx, next) {
     const errors = {};
 
     for (const field of Object.keys(err.errors)) {
-      errors[field] = err.errors[field].message;
+      errors[err.errors[field].path] = err.errors[field].message;
     }
+
     ctx.body = { errors };
   }
 };

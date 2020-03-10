@@ -14,8 +14,11 @@ const User = sequelize.define('user', {
   email: {
     type: DataTypes.TEXT,
     validate: {
-      isEmail: {
-        msg: 'Некорректный email.',
+      isEmail(value) {
+        const isValidEmail = /^[-.\w]+@([\w-]+\.)+[\w-]{2,12}$/.test(value);
+        if (!isValidEmail) {
+          throw new Error('Неверный формат email.');
+        }
       },
       notNull: {
         msg: 'E-mail пользователя не должен быть пустым.',
