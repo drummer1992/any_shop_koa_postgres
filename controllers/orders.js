@@ -2,7 +2,6 @@
 
 const { Order } = require('../models/Order');
 const { Product, Image } = require('../models/Product');
-const { User } = require('../models/User');
 const sendMail = require('../libs/sendMail');
 const productMapper = require('../mappers/product');
 const orderMapper = require('../mappers/order');
@@ -43,7 +42,7 @@ module.exports.getOrdersList = async function ordersList(ctx) {
     where: {
       userId: user.id
     },
-    include: [User, Product],
+    include: [{ all: true }],
   });
 
   for (const order of orders) {
