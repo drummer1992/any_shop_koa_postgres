@@ -85,8 +85,8 @@ async function insertProduct() {
     await Product.create({
       id,
       title: product.title,
-      description: product.description,
-      price: product.price.replace(',', '.'),
+      description: product.description.replace(/(<([^>]+)>)/ig, ''),
+      price: parseInt(product.price),
       categoryId: catSubCat[product.category].id,
       subcategoryId: subcategory[product.subcategory],
     });
