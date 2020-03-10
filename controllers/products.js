@@ -28,9 +28,7 @@ module.exports.productsByQuery = async function productsByQuery(ctx, next) {
     .findAll({
       where: {
         title: {
-          [Op.or]: {
-            [Op.iLike]: `%${query}%`,
-          },
+          [Op.iLike]: `%${query}%`,
         }
       },
       include: Image,
